@@ -85,6 +85,7 @@ public class ContatoController {
     }
 
 
+    
     public void atualiza(Contato contato) {
 
     }
@@ -96,22 +97,27 @@ public class ContatoController {
         ArrayList<Contato> resultado = new ArrayList<>();
 
         if (tbs.size() == 1) {
-            Tabela tb = tbs.get(0);
-            ArrayList<Object> linhas = tb.getLinhas()
-                    .stream()
-                    .filter( linha -> ((Contato) linha).comparaNome(nome))
-                    .collect(Collectors
-                            .toCollection(ArrayList::new));
-
-            linhas.forEach(o -> resultado.add((Contato) o));
-
-            return resultado;
+            procurarDisp(nome);
 
         } else if(tbs.size() > 1) {
             System.err.println("Aviso em ContatoController::procurar. Foram encontradas mais de uma tabela com o mesmo nome.");
         } else {
             System.err.println("Aviso em ContatoController::procurar. Tabela não encontrada;");
         }
+
+        return resultado;
+    }
+    public ArrayList<Contato> procurarDisp(String nome) {
+    	List<Tabela> tbs = this.db.getTabelaPorClasse(Contato.class);
+    	ArrayList<Contato> resultado = new ArrayList<>();
+    	Tabela tb = tbs.get(0);
+        ArrayList<Object> linhas = tb.getLinhas()
+                .stream()
+                .filter( linha -> ((Contato) linha).comparaNome(nome))
+                .collect(Collectors
+                        .toCollection(ArrayList::new));
+
+        linhas.forEach(o -> resultado.add((Contato) o));
 
         return resultado;
     }

@@ -15,32 +15,37 @@ public class GrupoView{
 
     
     public void consultarPorDescricao(Scanner inp) {
-        System.out.println("Qual descrição você deseja consultar? ");
-        System.out.print("Descrição: ");
-        String desc = inp.nextLine();
+        System.out.println("Qual descricao voce deseja consultar? \n" + "Descricao");
 
-        ArrayList <Grupo> result = new GrupoController().procurar(desc);
-        if (result.size() < 1) {
+        ArrayList <Grupo> result = new GrupoController().procurar(consultaEx(inp));
+        if (consultaSize(result) < 1) {
 		    System.out.println("Nenhum grupo encontrado :c");
 		} else {
-		    System.out.println(":::::                   :::::");
+		   // System.out.println(":::::                   :::::");
 		    result.forEach(grupo -> System.out.println(grupo.toString()));
-		    System.out.println(":::::                   :::::");
+		   // System.out.println(":::::                   :::::");
 		}
+    }
+    
+    private String consultaEx(Scanner inp) {
+		String desc = inp.nextLine();
+		return desc;
+    }
+    private int consultaSize(ArrayList result) {
+    	return result.size();
     }
 
     public void consultarPorContato(Scanner inp) {
-        System.out.println("Qual contato você deseja consultar? ");
-        System.out.print("Nome: ");
-        String nome = inp.nextLine();
+        System.out.println("Qual contato voce deseja consultar? \n" + "Nome: ");
+        
 
-        ArrayList <Grupo> result = new GrupoController().procurarPorContato(nome);
-        if (result.size() < 1) {
+        ArrayList <Grupo> result = new GrupoController().procurarPorContato(consultaEx(inp));
+        if (consultaSize(result) < 1) {
 		    System.out.println("Nenhum grupo encontrado :c");
 		} else {
-		    System.out.println(":::::                   :::::");
+		    //System.out.println(":::::                   :::::");
 		    result.forEach(grupo -> System.out.println(grupo.toString()));
-		    System.out.println(":::::                   :::::");
+		    //System.out.println(":::::                   :::::");
 		}
     }
 

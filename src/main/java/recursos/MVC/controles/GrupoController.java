@@ -32,7 +32,7 @@ public class GrupoController{
 
 
     public void adicionar(Grupo grupo) {
-        Persistencia r = this.db;
+    	Persistencia r = this.db;
 		String nomeTabela = Utils.relativeNomeClasse(grupo.getClass().getName()).toLowerCase();
 		
 		Tabela tabelaDoObjeto = r.tabelas.stream()
@@ -45,30 +45,11 @@ public class GrupoController{
 		} else {
 		    System.err.println("Aviso em Tabela::salvarObjeto. Tabela desconhecida.");
 		}
-		
-		List<Field> f = r.getAtributos(grupo);
-		f.forEach(fi -> fi.setAccessible(true));
-		
-		ArrayList<String> colunas = new ArrayList<>();
-		ArrayList<String> valores = new ArrayList<>();
-		
-		for (Field fi : f) {
-		    String constraints = Utils.convertAnotation(fi.getAnnotations());
-		    try {
-		        String nomeColuna = fi.getName();
-		        boolean isId = nomeColuna.startsWith("id_");
-		        if (!isId) {
-		            colunas.add(nomeColuna);
-		            valores.add(String.valueOf(fi.get(grupo)));
-		        }
-		    } catch (IllegalAccessException e) {
-		        e.printStackTrace();
-		    }
-		}
-		
-		r.genericInsert(nomeTabela, colunas, valores);
+
 		r.carregaDados();
     }
+
+    
 
 
     public void remover(Grupo grupo) {
@@ -87,21 +68,14 @@ public class GrupoController{
         ArrayList<Grupo> resultado = new ArrayList<>();
 
         if (tbs.size() == 1) {
-            Tabela tb = tbs.get(0);
-            ArrayList<Object> linhas = tb.getLinhas()
-                    .stream()
-                    .filter( linha -> ( (Grupo) linha).comparaGrupo(descricao) )
-                    .collect(Collectors
-                            .toCollection(ArrayList::new));
-
-            linhas.forEach(o -> resultado.add((Grupo) o));
+            
 
             return resultado;
 
         } else if(tbs.size() > 1) {
             System.err.println("Aviso em GrupoController::procurar. Foram encontradas mais de uma tabela com o mesmo nome.");
         } else {
-            System.err.println("Aviso em GrupoController::procurar. Tabela não encontrada;");
+            System.err.println("Aviso em GrupoController::procurar. Tabela nao encontrada;");
         }
 
         return resultado;

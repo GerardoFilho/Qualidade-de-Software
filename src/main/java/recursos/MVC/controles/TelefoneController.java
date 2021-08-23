@@ -88,14 +88,6 @@ public class TelefoneController {
         ArrayList<Telefone> resultado = new ArrayList<>();
 
         if (tbs.size() == 1) {
-            Tabela tb = tbs.get(0);
-            ArrayList<Object> linhas = tb.getLinhas()
-                    .stream()
-                    .filter( linha -> ( (Telefone) linha).comparaTelefone(telefone) )
-                    .collect(Collectors
-                            .toCollection(ArrayList::new));
-
-            linhas.forEach(o -> resultado.add((Telefone) o));
 
             return resultado;
 

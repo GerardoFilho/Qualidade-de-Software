@@ -15,18 +15,10 @@ public class ContatoView{
 
 
     public void consultar(Scanner inp) {
-        System.out.println();
-        System.out.println("Deseja consultar por:");
-
-        System.out.println("1 - Nome");
-        System.out.println("2 - Numero");
-        System.out.println("3 - Grupo");
-        System.out.println("4 - Listar todos");
-        System.out.println("0 - Voltar.");
+        System.out.println("Deseja consultar por:\n" + "1 - Nome\n" + "2 - Numero\n" + "3 - Grupo\n" + "4 - Listar todos\n" + "0 - Voltar. \n" + "Escolha:");
 
         boolean valido = false;
         while (!valido) {
-            System.out.print("Escolha: ");
             String escolha = inp.nextLine();
             switch (escolha) {
                 case "1":
@@ -67,9 +59,9 @@ public class ContatoView{
         if (result.size() < 1) {
             System.out.println("Nenhum contato encontrado :c");
         } else {
-            System.out.println(":::::                   :::::");
+            //System.out.println(":::::                   :::::");
             result.forEach(contato -> System.out.println(contato.toString()));
-            System.out.println(":::::                   :::::");
+            //System.out.println(":::::                   :::::");
         }
     }
 

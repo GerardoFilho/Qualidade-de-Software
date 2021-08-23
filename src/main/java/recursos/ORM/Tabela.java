@@ -148,12 +148,7 @@ public class Tabela {
                 for(Field field : clazz.getDeclaredFields()) {
                     String nomeAtt = field.getName();
                     if (nomeAtt.contains("id_")) {
-                        try {
-                            field.setAccessible(true);
-                            saida = String.valueOf( field.get(o) );
-                        } catch (IllegalAccessException e) {
-                            e.printStackTrace();
-                        }
+                        
                     }
                 }
             }
