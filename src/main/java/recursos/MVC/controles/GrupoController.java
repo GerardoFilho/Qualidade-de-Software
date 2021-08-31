@@ -110,3 +110,22 @@ public class GrupoController{
         return new ArrayList<>(result);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

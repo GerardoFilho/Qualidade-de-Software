@@ -142,3 +142,22 @@ public class Contato {
         this.telefones.add( (Telefone) ob );
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
